@@ -66,7 +66,7 @@ const FormContainer = () => {
       } else {
         submitData = {
           phoneNumber: countryCode.current.value + phoneNumberRef.current.value,
-          codeRef: codeRef.current.value,
+          accessCode: codeRef.current.value,
         };
         callAPI("validateAccessCode", submitData);
       }
