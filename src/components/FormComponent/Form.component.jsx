@@ -2,7 +2,6 @@ import React from "react";
 import "./Form.style.scss";
 
 const FormComponent = ({ children, submitForm, errorMsg }) => {
-  console.log(!!errorMsg.phoneError || !!errorMsg.codeError);
   return (
     <div className="form-component flex justify-center">
       <div className="w-full h-full">

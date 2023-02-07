@@ -1,3 +1,4 @@
+import "react-toastify/dist/ReactToastify.css";
 import FormContainer from "./containers/FormContainer/Form.container";
 
 function App() {

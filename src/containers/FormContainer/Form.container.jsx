@@ -3,6 +3,8 @@ import FormComponent from "../../components/FormComponent/Form.component";
 import "./Form.style.scss";
 import PhoneInputContainer from "../PhoneInputContainer/PhoneInput.container";
 import CodeInputContainer from "../CodeInputContainer/CodeInput.container";
+import { ToastContainer } from "react-toastify";
+import { notificationHandler } from "../../utils/notification";
 
 const phoneRegex =
   /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
@@ -41,8 +43,8 @@ const FormContainer = () => {
     }
   };
 
-  const callAPI = (api, data) => {
-    fetch(`http://localhost:4000/${api}`, {
+  const callAPI = async (api, data) => {
+    const result = await fetch(`http://localhost:4000/${api}`, {
       // Enter your IP address here
       method: "POST",
       headers: {
@@ -52,6 +54,8 @@ const FormContainer = () => {
       mode: "cors",
       body: JSON.stringify(data), // body data type must match "Content-Type" header
     });
+    const resultJSON = await result.json();
+    notificationHandler(resultJSON.msg);
   };
 
   const submitForm = () => {
@@ -87,6 +91,7 @@ const FormContainer = () => {
           errorMsg={errorMsg.codeError}
         />
       </FormComponent>
+      <ToastContainer />
     </div>
   );
 };
